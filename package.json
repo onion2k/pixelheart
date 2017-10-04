@@ -1,17 +1,27 @@
 {
   "name": "pixelheart",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --config webpack.config.js",
+    "bundle": "webpack src/pixelheart.js dist/pixelheart.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onion2k/pixelheart.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/onion2k/pixelheart/issues"
+  },
+  "homepage": "https://github.com/onion2k/pixelheart#readme",
   "dependencies": {
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "react-scripts": "1.0.14",
     "three": "^0.87.1"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+  "devDependencies": {
+    "webpack": "^3.6.0"
   }
 }
