@@ -73,6 +73,86 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+var THREE = {
+    PerspectiveCamera: __WEBPACK_IMPORTED_MODULE_0_three__["d" /* PerspectiveCamera */],
+    Scene: __WEBPACK_IMPORTED_MODULE_0_three__["f" /* Scene */],
+    Mesh: __WEBPACK_IMPORTED_MODULE_0_three__["b" /* Mesh */],
+    CubeGeometry: __WEBPACK_IMPORTED_MODULE_0_three__["a" /* CubeGeometry */],
+    MeshStandardMaterial: __WEBPACK_IMPORTED_MODULE_0_three__["c" /* MeshStandardMaterial */],
+    WebGLRenderer: __WEBPACK_IMPORTED_MODULE_0_three__["h" /* WebGLRenderer */],
+    Vector3: __WEBPACK_IMPORTED_MODULE_0_three__["g" /* Vector3 */],
+    PointLight: __WEBPACK_IMPORTED_MODULE_0_three__["e" /* PointLight */]
+}
+
+var container;
+var camera, light, scene, renderer;
+var cube, plane;
+var startTime	= Date.now();
+
+var targetRotation = 0;
+var targetRotationOnMouseDown = 0;
+
+var mouseX = 0;
+var mouseXOnMouseDown = 0;
+
+var windowHalfX = window.innerWidth / 2;
+var windowHalfY = window.innerHeight / 2;
+
+function init() {
+
+    // create the Scene
+    scene = new THREE.Scene();
+    
+    // create the Cube
+    cube = new THREE.Mesh( new THREE.CubeGeometry( 50, 50, 50 ), new THREE.MeshStandardMaterial({ color: "#433F81" }) );
+    
+    // add the object to the scene
+    scene.add( cube );
+
+    // create the camera
+    camera = new THREE.PerspectiveCamera( 70, 800/600, 1, 1000 );
+    camera.position.y = 200;
+    camera.position.z = 200;
+    camera.lookAt( cube.position );
+
+    var light = new THREE.PointLight( 0xff0000, 1, 1000 );
+    light.position.set( 150, 150, 150 );
+    scene.add( light );
+
+    // create the container element
+    container = document.createElement( 'div' );
+    document.body.appendChild( container );
+
+    // init the WebGL renderer and append it to the Dom
+    renderer = new THREE.WebGLRenderer();
+    renderer.setSize(800,600 );
+    container.appendChild( renderer.domElement );
+
+}
+/**
+ * Render the 3D scene
+*/
+function render() {
+    // animate the cube
+    cube.rotation.x += 0.02;
+    cube.rotation.y += 0.0225;
+    cube.rotation.z += 0.0175;
+    // actually display the scene in the Dom element
+    renderer.render( scene, camera );
+}
+/**
+ * animate and display the scene
+*/
+function animate() {
+    // render the 3D scene
+    render();
+    // relaunch the 'timer' 
+    requestAnimationFrame( animate );
+}
+
+init();
+animate();
+
 
 
 /***/ }),
@@ -82,21 +162,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 /* unused harmony export WebGLRenderTargetCube */
 /* unused harmony export WebGLRenderTarget */
-/* unused harmony export WebGLRenderer */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return WebGLRenderer; });
 /* unused harmony export ShaderLib */
 /* unused harmony export UniformsLib */
 /* unused harmony export UniformsUtils */
 /* unused harmony export ShaderChunk */
 /* unused harmony export FogExp2 */
 /* unused harmony export Fog */
-/* unused harmony export Scene */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return Scene; });
 /* unused harmony export LensFlare */
 /* unused harmony export Sprite */
 /* unused harmony export LOD */
 /* unused harmony export SkinnedMesh */
 /* unused harmony export Skeleton */
 /* unused harmony export Bone */
-/* unused harmony export Mesh */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return Mesh; });
 /* unused harmony export LineSegments */
 /* unused harmony export LineLoop */
 /* unused harmony export Line */
@@ -127,7 +207,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* unused harmony export AudioLoader */
 /* unused harmony export SpotLightShadow */
 /* unused harmony export SpotLight */
-/* unused harmony export PointLight */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return PointLight; });
 /* unused harmony export RectAreaLight */
 /* unused harmony export HemisphereLight */
 /* unused harmony export DirectionalLightShadow */
@@ -136,7 +216,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* unused harmony export LightShadow */
 /* unused harmony export Light */
 /* unused harmony export StereoCamera */
-/* unused harmony export PerspectiveCamera */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return PerspectiveCamera; });
 /* unused harmony export OrthographicCamera */
 /* unused harmony export CubeCamera */
 /* unused harmony export ArrayCamera */
@@ -194,7 +274,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* unused harmony export Line3 */
 /* unused harmony export Euler */
 /* unused harmony export Vector4 */
-/* unused harmony export Vector3 */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return Vector3; });
 /* unused harmony export Vector2 */
 /* unused harmony export Quaternion */
 /* unused harmony export Color */
@@ -282,7 +362,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* unused harmony export ShaderMaterial */
 /* unused harmony export PointsMaterial */
 /* unused harmony export MeshPhysicalMaterial */
-/* unused harmony export MeshStandardMaterial */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return MeshStandardMaterial; });
 /* unused harmony export MeshPhongMaterial */
 /* unused harmony export MeshToonMaterial */
 /* unused harmony export MeshNormalMaterial */
@@ -428,7 +508,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* unused harmony export RGBDEncoding */
 /* unused harmony export BasicDepthPacking */
 /* unused harmony export RGBADepthPacking */
-/* unused harmony export CubeGeometry */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BoxGeometry; });
 /* unused harmony export Face4 */
 /* unused harmony export LineStrip */
 /* unused harmony export LinePieces */
