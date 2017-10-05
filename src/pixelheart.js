@@ -1,5 +1,5 @@
 
-import {PerspectiveCamera, Scene, Mesh, CubeGeometry, MeshStandardMaterial, WebGLRenderer, Vector3, PointLight} from 'three';
+import {PerspectiveCamera, Scene, Mesh, CubeGeometry, MeshStandardMaterial, WebGLRenderer, Vector3, PointLight, Object3D} from 'three';
 
 var THREE = {
     PerspectiveCamera: PerspectiveCamera,
@@ -9,12 +9,13 @@ var THREE = {
     MeshStandardMaterial: MeshStandardMaterial,
     WebGLRenderer: WebGLRenderer,
     Vector3: Vector3,
-    PointLight: PointLight
+    PointLight: PointLight,
+    Object3D: Object3D
 }
 
 var container;
-var camera, light, scene, renderer;
-let pixelheart = [];
+var camera, light, scene, renderer, pink, cube;
+let pixelheart = new THREE.Object3D();
 var cube, plane;
 var startTime	= Date.now();
 
@@ -31,18 +32,124 @@ function init() {
 
     // create the Scene
     scene = new THREE.Scene();
+    scene.add( pixelheart );
     
-    // create the Cube
-    cube = new THREE.Mesh( new THREE.CubeGeometry( 50, 50, 50 ), new THREE.MeshStandardMaterial({ color: "#ff4444" }) );
+    pink = new THREE.MeshStandardMaterial({ color: "#F660AB" });
+    cube = new THREE.CubeGeometry( 10, 10, 10 );
 
-    // add the object to the scene
-    scene.add( cube );
+/*
+
+     XXX XXX 
+    X   X   X
+    X       X
+    X   O   X
+     X     X
+      X   X
+       X X
+        X
+
+
+*/
+
+    var pixel = new THREE.Mesh( cube, pink );
+    pixel.position.set(-33,-33,0);    
+    pixelheart.add(pixel);
+
+    var pixel = new THREE.Mesh( cube, pink );
+    pixel.position.set(-22,-33,0);    
+    pixelheart.add(pixel);
+
+    var pixel = new THREE.Mesh( cube, pink );
+    pixel.position.set(-11,-33,0);    
+    pixelheart.add(pixel);
+
+    var pixel = new THREE.Mesh( cube, pink );
+    pixel.position.set(11,-33,0);    
+    pixelheart.add(pixel);
+
+    var pixel = new THREE.Mesh( cube, pink );
+    pixel.position.set(22,-33,0);    
+    pixelheart.add(pixel);
+
+    var pixel = new THREE.Mesh( cube, pink );
+    pixel.position.set(33,-33,0);    
+    pixelheart.add(pixel);
+
+
+    var pixel = new THREE.Mesh( cube, pink );
+    pixel.position.set(-44,-22,0);    
+    pixelheart.add(pixel);
+
+    var pixel = new THREE.Mesh( cube, pink );
+    pixel.position.set(0,-22,0);    
+    pixelheart.add(pixel);
+
+    var pixel = new THREE.Mesh( cube, pink );
+    pixel.position.set(44,-22,0);    
+    pixelheart.add(pixel);
+
+
+    var pixel = new THREE.Mesh( cube, pink );
+    pixel.position.set(-44,-11,0);    
+    pixelheart.add(pixel);
+
+    var pixel = new THREE.Mesh( cube, pink );
+    pixel.position.set(44,-11,0);    
+    pixelheart.add(pixel);
+
+
+    var pixel = new THREE.Mesh( cube, pink );
+    pixel.position.set(-44,0,0);    
+    pixelheart.add(pixel);
+
+    var pixel = new THREE.Mesh( cube, pink );
+    pixel.position.set(44,0,0);    
+    pixelheart.add(pixel);
+
+
+    var pixel = new THREE.Mesh( cube, pink );
+    pixel.position.set(-33,11,0);    
+    pixelheart.add(pixel);
+
+    var pixel = new THREE.Mesh( cube, pink );
+    pixel.position.set(33,11,0);    
+    pixelheart.add(pixel);
+
+
+    var pixel = new THREE.Mesh( cube, pink );
+    pixel.position.set(-22,22,0);    
+    pixelheart.add(pixel);
+
+    var pixel = new THREE.Mesh( cube, pink );
+    pixel.position.set(22,22,0);    
+    pixelheart.add(pixel);
+
+
+    var pixel = new THREE.Mesh( cube, pink );
+    pixel.position.set(-11,33,0);    
+    pixelheart.add(pixel);
+
+    var pixel = new THREE.Mesh( cube, pink );
+    pixel.position.set(11,33,0);    
+    pixelheart.add(pixel);
+
+
+    var pixel = new THREE.Mesh( cube, pink );
+    pixel.position.set(-11,33,0);    
+    pixelheart.add(pixel);
+
+    var pixel = new THREE.Mesh( cube, pink );
+    pixel.position.set(0,44,0);    
+    pixelheart.add(pixel);
+
+
+
 
     // create the camera
     camera = new THREE.PerspectiveCamera( 70, 800/600, 1, 1000 );
     camera.position.y = 150;
     camera.position.z = 150;
-    camera.lookAt( cube.position );
+    camera.lookAt( pixelheart.position );
 
     var light = new THREE.PointLight( 0xffffff, 1, 1000 );
     light.position.set( 150, 150, 150 );
@@ -63,9 +170,9 @@ function init() {
 */
 function render() {
     // animate the cube
-    cube.rotation.x += 0.02;
-    cube.rotation.y += 0.0225;
-    cube.rotation.z += 0.0175;
+    pixelheart.rotation.x += 0.02;
+    pixelheart.rotation.y += 0.0225;
+    pixelheart.rotation.z += 0.0175;
     // actually display the scene in the Dom element
     renderer.render( scene, camera );
 }
