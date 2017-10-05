@@ -115,7 +115,7 @@ function init() {
     camera.position.z = 200;
     camera.lookAt( cube.position );
 
-    var light = new THREE.PointLight( 0xff0000, 1, 1000 );
+    var light = new THREE.PointLight( 0xffffff, 1, 1000 );
     light.position.set( 150, 150, 150 );
     scene.add( light );
 

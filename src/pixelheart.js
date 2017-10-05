@@ -14,6 +14,7 @@ var THREE = {
 
 var container;
 var camera, light, scene, renderer;
+let pixelheart = [];
 var cube, plane;
 var startTime	= Date.now();
 
@@ -32,18 +33,18 @@ function init() {
     scene = new THREE.Scene();
     
     // create the Cube
-    cube = new THREE.Mesh( new THREE.CubeGeometry( 50, 50, 50 ), new THREE.MeshStandardMaterial({ color: "#433F81" }) );
-    
+    cube = new THREE.Mesh( new THREE.CubeGeometry( 50, 50, 50 ), new THREE.MeshStandardMaterial({ color: "#ff4444" }) );
+
     // add the object to the scene
     scene.add( cube );
 
     // create the camera
     camera = new THREE.PerspectiveCamera( 70, 800/600, 1, 1000 );
-    camera.position.y = 200;
-    camera.position.z = 200;
+    camera.position.y = 150;
+    camera.position.z = 150;
     camera.lookAt( cube.position );
 
-    var light = new THREE.PointLight( 0xff0000, 1, 1000 );
+    var light = new THREE.PointLight( 0xffffff, 1, 1000 );
     light.position.set( 150, 150, 150 );
     scene.add( light );
 

@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack --config webpack.config.js",
-    "bundle": "webpack src/pixelheart.js dist/pixelheart.js"
+    "start": "webpack-dev-server --config webpack.config.js --progress --colors --watch",
+    "watch": "webpack --config webpack.config.js --watch",
+    "build": "webpack --config webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
     "three": "^0.87.1"
   },
   "devDependencies": {
-    "webpack": "^3.6.0"
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.9.1"
   }
 }
