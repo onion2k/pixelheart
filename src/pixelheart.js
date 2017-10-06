@@ -1,5 +1,5 @@
 
-import {PerspectiveCamera, Scene, Mesh, CubeGeometry, MeshStandardMaterial, WebGLRenderer, Vector3, PointLight, Object3D} from 'three';
+import {PerspectiveCamera, Scene, Mesh, CubeGeometry, MeshStandardMaterial, MeshPhysicalMaterial, WebGLRenderer, Vector3, PointLight, Object3D} from 'three';
 
 var THREE = {
     PerspectiveCamera: PerspectiveCamera,
@@ -7,6 +7,7 @@ var THREE = {
     Mesh: Mesh,
     CubeGeometry: CubeGeometry,
     MeshStandardMaterial: MeshStandardMaterial,
+    MeshPhysicalMaterial: MeshPhysicalMaterial,
     WebGLRenderer: WebGLRenderer,
     Vector3: Vector3,
     PointLight: PointLight,
@@ -27,6 +28,7 @@ var mouseXOnMouseDown = 0;
 
 var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
+var pink2 = new THREE.MeshStandardlMaterial({ color: "#F660AB" });
 
 function init() {
 
@@ -34,24 +36,14 @@ function init() {
     scene = new THREE.Scene();
     scene.add( pixelheart );
     
-    pink = new THREE.MeshStandardMaterial({ color: "#F660AB" });
+    pink = new THREE.MeshPhysicalMaterial({ color: "#F660AB" });
     cube = new THREE.CubeGeometry( 10, 10, 10 );
 
-/*
+    let s = 10;
+    let g = 2;
+    let d = s+g;
+    let d4 = d*4
 
-     XXX XXX 
-    X   X   X
-    X       X
-    X   O   X
-     X     X
-      X   X
-       X X
-        X
-
-
-*/
-
-    //organise by columns because maths
     let data = [
         0b00001110,
         0b00011111,
@@ -64,10 +56,6 @@ function init() {
         0b00001110
     ];
 
-    var s = 10;
-    var g = 2;
-    var d = s+g;
-    var d4 = d*4
     let y = 0;
     data.forEach((v)=>{
         y++;
@@ -79,100 +67,6 @@ function init() {
             }
         }
     });
-
-    // var pixel = new THREE.Mesh( cube, pink );
-    // pixel.position.set(-33,-33,0);    
-    // pixelheart.add(pixel);
-
-    // var pixel = new THREE.Mesh( cube, pink );
-    // pixel.position.set(-22,-33,0);    
-    // pixelheart.add(pixel);
-
-    // var pixel = new THREE.Mesh( cube, pink );
-    // pixel.position.set(-11,-33,0);    
-    // pixelheart.add(pixel);
-
-    // var pixel = new THREE.Mesh( cube, pink );
-    // pixel.position.set(11,-33,0);    
-    // pixelheart.add(pixel);
-
-    // var pixel = new THREE.Mesh( cube, pink );
-    // pixel.position.set(22,-33,0);    
-    // pixelheart.add(pixel);
-
-    // var pixel = new THREE.Mesh( cube, pink );
-    // pixel.position.set(33,-33,0);    
-    // pixelheart.add(pixel);
-
-
-    // var pixel = new THREE.Mesh( cube, pink );
-    // pixel.position.set(-44,-22,0);    
-    // pixelheart.add(pixel);
-
-    // var pixel = new THREE.Mesh( cube, pink );
-    // pixel.position.set(0,-22,0);    
-    // pixelheart.add(pixel);
-
-    // var pixel = new THREE.Mesh( cube, pink );
-    // pixel.position.set(44,-22,0);    
-    // pixelheart.add(pixel);
-
-
-    // var pixel = new THREE.Mesh( cube, pink );
-    // pixel.position.set(-44,-11,0);    
-    // pixelheart.add(pixel);
-
-    // var pixel = new THREE.Mesh( cube, pink );
-    // pixel.position.set(44,-11,0);    
-    // pixelheart.add(pixel);
-
-
-    // var pixel = new THREE.Mesh( cube, pink );
-    // pixel.position.set(-44,0,0);    
-    // pixelheart.add(pixel);
-
-    // var pixel = new THREE.Mesh( cube, pink );
-    // pixel.position.set(44,0,0);    
-    // pixelheart.add(pixel);
-
-
-    // var pixel = new THREE.Mesh( cube, pink );
-    // pixel.position.set(-33,11,0);    
-    // pixelheart.add(pixel);
-
-    // var pixel = new THREE.Mesh( cube, pink );
-    // pixel.position.set(33,11,0);    
-    // pixelheart.add(pixel);
-
-
-    // var pixel = new THREE.Mesh( cube, pink );
-    // pixel.position.set(-22,22,0);    
-    // pixelheart.add(pixel);
-
-    // var pixel = new THREE.Mesh( cube, pink );
-    // pixel.position.set(22,22,0);    
-    // pixelheart.add(pixel);
-
-
-    // var pixel = new THREE.Mesh( cube, pink );
-    // pixel.position.set(-11,33,0);    
-    // pixelheart.add(pixel);
-
-    // var pixel = new THREE.Mesh( cube, pink );
-    // pixel.position.set(11,33,0);    
-    // pixelheart.add(pixel);
-
-
-    // var pixel = new THREE.Mesh( cube, pink );
-    // pixel.position.set(-11,33,0);    
-    // pixelheart.add(pixel);
-
-    // var pixel = new THREE.Mesh( cube, pink );
-    // pixel.position.set(0,44,0);    
-    // pixelheart.add(pixel);
-
-
-
 
     // create the camera
     camera = new THREE.PerspectiveCamera( 70, 800/600, 1, 1000 );
