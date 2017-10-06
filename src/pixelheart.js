@@ -54,23 +54,27 @@ function init() {
     //organise by columns because maths
     let data = [
         0b00001110,
-        0b00010001,
-        0b00100001,
-        0b01000001,
-        0b10000010,
-        0b01000001,
-        0b00100001,
-        0b00010001,
+        0b00011111,
+        0b00111111,
+        0b01111111,
+        0b11111110,
+        0b01111111,
+        0b00111111,
+        0b00011111,
         0b00001110
     ];
 
+    var s = 10;
+    var g = 2;
+    var d = s+g;
+    var d4 = d*4
     let y = 0;
     data.forEach((v)=>{
         y++;
         for (var x=0;x<8;x++){
             if (!!(v & (1<<x))) {
                 var pixel = new THREE.Mesh( cube, pink );
-                pixel.position.set(44-(y*11),44-(x*11),0);    
+                pixel.position.set(d4-(y*d),d4-(x*d),0);    
                 pixelheart.add(pixel);
             }
         }
