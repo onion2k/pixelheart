@@ -51,6 +51,20 @@ function init() {
 
 */
 
+    //organise by columns because maths
+    let data = [
+        0b00001110,
+        0b00010001,
+        0b00100001,
+        0b01000001,
+        0b10000010,
+        0b01000001,
+        0b00100001,
+        0b00010001,
+        0b00001110
+    ];
+
+    console.log(data); 
     var pixel = new THREE.Mesh( cube, pink );
     pixel.position.set(-33,-33,0);    
     pixelheart.add(pixel);
