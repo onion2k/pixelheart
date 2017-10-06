@@ -64,97 +64,108 @@ function init() {
         0b00001110
     ];
 
-    console.log(data); 
-    var pixel = new THREE.Mesh( cube, pink );
-    pixel.position.set(-33,-33,0);    
-    pixelheart.add(pixel);
+    let y = 0;
+    data.forEach((v)=>{
+        y++;
+        for (var x=0;x<8;x++){
+            if (!!(v & (1<<x))) {
+                var pixel = new THREE.Mesh( cube, pink );
+                pixel.position.set(44-(y*11),44-(x*11),0);    
+                pixelheart.add(pixel);
+            }
+        }
+    });
 
-    var pixel = new THREE.Mesh( cube, pink );
-    pixel.position.set(-22,-33,0);    
-    pixelheart.add(pixel);
+    // var pixel = new THREE.Mesh( cube, pink );
+    // pixel.position.set(-33,-33,0);    
+    // pixelheart.add(pixel);
 
-    var pixel = new THREE.Mesh( cube, pink );
-    pixel.position.set(-11,-33,0);    
-    pixelheart.add(pixel);
+    // var pixel = new THREE.Mesh( cube, pink );
+    // pixel.position.set(-22,-33,0);    
+    // pixelheart.add(pixel);
 
-    var pixel = new THREE.Mesh( cube, pink );
-    pixel.position.set(11,-33,0);    
-    pixelheart.add(pixel);
+    // var pixel = new THREE.Mesh( cube, pink );
+    // pixel.position.set(-11,-33,0);    
+    // pixelheart.add(pixel);
 
-    var pixel = new THREE.Mesh( cube, pink );
-    pixel.position.set(22,-33,0);    
-    pixelheart.add(pixel);
+    // var pixel = new THREE.Mesh( cube, pink );
+    // pixel.position.set(11,-33,0);    
+    // pixelheart.add(pixel);
 
-    var pixel = new THREE.Mesh( cube, pink );
-    pixel.position.set(33,-33,0);    
-    pixelheart.add(pixel);
+    // var pixel = new THREE.Mesh( cube, pink );
+    // pixel.position.set(22,-33,0);    
+    // pixelheart.add(pixel);
 
-
-    var pixel = new THREE.Mesh( cube, pink );
-    pixel.position.set(-44,-22,0);    
-    pixelheart.add(pixel);
-
-    var pixel = new THREE.Mesh( cube, pink );
-    pixel.position.set(0,-22,0);    
-    pixelheart.add(pixel);
-
-    var pixel = new THREE.Mesh( cube, pink );
-    pixel.position.set(44,-22,0);    
-    pixelheart.add(pixel);
+    // var pixel = new THREE.Mesh( cube, pink );
+    // pixel.position.set(33,-33,0);    
+    // pixelheart.add(pixel);
 
 
-    var pixel = new THREE.Mesh( cube, pink );
-    pixel.position.set(-44,-11,0);    
-    pixelheart.add(pixel);
+    // var pixel = new THREE.Mesh( cube, pink );
+    // pixel.position.set(-44,-22,0);    
+    // pixelheart.add(pixel);
 
-    var pixel = new THREE.Mesh( cube, pink );
-    pixel.position.set(44,-11,0);    
-    pixelheart.add(pixel);
+    // var pixel = new THREE.Mesh( cube, pink );
+    // pixel.position.set(0,-22,0);    
+    // pixelheart.add(pixel);
 
-
-    var pixel = new THREE.Mesh( cube, pink );
-    pixel.position.set(-44,0,0);    
-    pixelheart.add(pixel);
-
-    var pixel = new THREE.Mesh( cube, pink );
-    pixel.position.set(44,0,0);    
-    pixelheart.add(pixel);
+    // var pixel = new THREE.Mesh( cube, pink );
+    // pixel.position.set(44,-22,0);    
+    // pixelheart.add(pixel);
 
 
-    var pixel = new THREE.Mesh( cube, pink );
-    pixel.position.set(-33,11,0);    
-    pixelheart.add(pixel);
+    // var pixel = new THREE.Mesh( cube, pink );
+    // pixel.position.set(-44,-11,0);    
+    // pixelheart.add(pixel);
 
-    var pixel = new THREE.Mesh( cube, pink );
-    pixel.position.set(33,11,0);    
-    pixelheart.add(pixel);
-
-
-    var pixel = new THREE.Mesh( cube, pink );
-    pixel.position.set(-22,22,0);    
-    pixelheart.add(pixel);
-
-    var pixel = new THREE.Mesh( cube, pink );
-    pixel.position.set(22,22,0);    
-    pixelheart.add(pixel);
+    // var pixel = new THREE.Mesh( cube, pink );
+    // pixel.position.set(44,-11,0);    
+    // pixelheart.add(pixel);
 
 
-    var pixel = new THREE.Mesh( cube, pink );
-    pixel.position.set(-11,33,0);    
-    pixelheart.add(pixel);
+    // var pixel = new THREE.Mesh( cube, pink );
+    // pixel.position.set(-44,0,0);    
+    // pixelheart.add(pixel);
 
-    var pixel = new THREE.Mesh( cube, pink );
-    pixel.position.set(11,33,0);    
-    pixelheart.add(pixel);
+    // var pixel = new THREE.Mesh( cube, pink );
+    // pixel.position.set(44,0,0);    
+    // pixelheart.add(pixel);
 
 
-    var pixel = new THREE.Mesh( cube, pink );
-    pixel.position.set(-11,33,0);    
-    pixelheart.add(pixel);
+    // var pixel = new THREE.Mesh( cube, pink );
+    // pixel.position.set(-33,11,0);    
+    // pixelheart.add(pixel);
 
-    var pixel = new THREE.Mesh( cube, pink );
-    pixel.position.set(0,44,0);    
-    pixelheart.add(pixel);
+    // var pixel = new THREE.Mesh( cube, pink );
+    // pixel.position.set(33,11,0);    
+    // pixelheart.add(pixel);
+
+
+    // var pixel = new THREE.Mesh( cube, pink );
+    // pixel.position.set(-22,22,0);    
+    // pixelheart.add(pixel);
+
+    // var pixel = new THREE.Mesh( cube, pink );
+    // pixel.position.set(22,22,0);    
+    // pixelheart.add(pixel);
+
+
+    // var pixel = new THREE.Mesh( cube, pink );
+    // pixel.position.set(-11,33,0);    
+    // pixelheart.add(pixel);
+
+    // var pixel = new THREE.Mesh( cube, pink );
+    // pixel.position.set(11,33,0);    
+    // pixelheart.add(pixel);
+
+
+    // var pixel = new THREE.Mesh( cube, pink );
+    // pixel.position.set(-11,33,0);    
+    // pixelheart.add(pixel);
+
+    // var pixel = new THREE.Mesh( cube, pink );
+    // pixel.position.set(0,44,0);    
+    // pixelheart.add(pixel);
 
 
 
