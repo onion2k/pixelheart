@@ -15,7 +15,7 @@ var THREE = {
 }
 
 var container;
-var camera, light, scene, renderer, pink, cube;
+var camera, light, scene, renderer, pink, black, cube;
 let pixelheart = new THREE.Object3D();
 var cube, plane;
 var startTime	= Date.now();
@@ -28,7 +28,6 @@ var mouseXOnMouseDown = 0;
 
 var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
-var pink2 = new THREE.MeshStandardlMaterial({ color: "#F660AB" });
 
 function init() {
 
@@ -36,15 +35,45 @@ function init() {
     scene = new THREE.Scene();
     scene.add( pixelheart );
     
+    black = new THREE.MeshPhysicalMaterial({ color: "#FFFFFF" });
     pink = new THREE.MeshPhysicalMaterial({ color: "#F660AB" });
     cube = new THREE.CubeGeometry( 10, 10, 10 );
 
     let s = 10;
-    let g = 2;
+    let g = 1;
     let d = s+g;
-    let d4 = d*4
+    let d4 = d*4;
+    let d5 = d*5;
 
-    let data = [
+    let blackcubes = [
+        0b0000011110,
+        0b0000100011,
+        0b0001000001,
+        0b0010000001,
+        0b0100000001,
+        0b1000000010,
+        0b0100000001,
+        0b0010000001,
+        0b0001000001,
+        0b0000100011,
+        0b0000011110
+    ];
+
+    let y;
+    y = 0;
+    blackcubes.forEach((v)=>{
+        y++;
+        for (var x=0;x<10;x++){
+            if (!!(v & (1<<x))) {
+                var pixel = new THREE.Mesh( cube, black );
+                pixel.position.set(d5-(y*d),d5-(x*d),0);    
+                pixelheart.add(pixel);
+            }
+        }
+    });
+
+
+    let pinkcubes = [
         0b00001110,
         0b00011111,
         0b00111111,
@@ -56,8 +85,8 @@ function init() {
         0b00001110
     ];
 
-    let y = 0;
-    data.forEach((v)=>{
+    y = 0;
+    pinkcubes.forEach((v)=>{
         y++;
         for (var x=0;x<8;x++){
             if (!!(v & (1<<x))) {
