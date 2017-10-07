@@ -1,11 +1,11 @@
 
-import {PerspectiveCamera, Scene, Mesh, CubeGeometry, MeshStandardMaterial, MeshPhysicalMaterial, WebGLRenderer, Vector3, PointLight, Object3D} from 'three';
+import {PerspectiveCamera, Scene, Mesh, BoxBufferGeometry, MeshStandardMaterial, MeshPhysicalMaterial, WebGLRenderer, Vector3, PointLight, Object3D} from 'three';
 
 var THREE = {
     PerspectiveCamera: PerspectiveCamera,
     Scene: Scene,
     Mesh: Mesh,
-    CubeGeometry: CubeGeometry,
+    BoxBufferGeometry: BoxBufferGeometry,
     MeshStandardMaterial: MeshStandardMaterial,
     MeshPhysicalMaterial: MeshPhysicalMaterial,
     WebGLRenderer: WebGLRenderer,
@@ -15,10 +15,12 @@ var THREE = {
 }
 
 var container;
-var camera, light, scene, renderer, pink, black, cube;
+var camera, light, scene, renderer;
 let pixelheart = new THREE.Object3D();
 var cube, plane;
 var startTime	= Date.now();
+var speed = 0.25;
+
 
 var targetRotation = 0;
 var targetRotationOnMouseDown = 0;
@@ -34,67 +36,31 @@ function init() {
     // create the Scene
     scene = new THREE.Scene();
     scene.add( pixelheart );
-    
-    black = new THREE.MeshPhysicalMaterial({ color: "#FFFFFF" });
-    pink = new THREE.MeshPhysicalMaterial({ color: "#F660AB" });
-    cube = new THREE.CubeGeometry( 10, 10, 10 );
-
-    let s = 10;
-    let g = 1;
-    let d = s+g;
-    let d4 = d*4;
-    let d5 = d*5;
-
-    let blackcubes = [
-        0b0000011110,
-        0b0000100011,
-        0b0001000001,
-        0b0010000001,
-        0b0100000001,
-        0b1000000010,
-        0b0100000001,
-        0b0010000001,
-        0b0001000001,
-        0b0000100011,
-        0b0000011110
-    ];
 
     let y;
-    y = 0;
-    blackcubes.forEach((v)=>{
-        y++;
-        for (var x=0;x<10;x++){
-            if (!!(v & (1<<x))) {
-                var pixel = new THREE.Mesh( cube, black );
-                pixel.position.set(d5-(y*d),d5-(x*d),0);    
-                pixelheart.add(pixel);
-            }
-        }
-    });
-
-
-    let pinkcubes = [
-        0b00001110,
-        0b00011111,
-        0b00111111,
-        0b01111111,
-        0b11111110,
-        0b01111111,
-        0b00111111,
-        0b00011111,
-        0b00001110
+    let s = 12;
+    let g = 0;
+    let d = s+g;
+    let d5 = d*5;
+    let cubeGeo = new THREE.BoxBufferGeometry( s, s, s );
+    let c = [
+        { layer: 6, color: "#F660AB", pos: [0,28,62,126,254,508,254,126,62,28,0]},
+        { layer: 5, color: "#FFFFFF", pos: [28,34,65,129,257,514,257,129,65,34,28]},
+        { layer: 4, color: "#F660AB", pos: [0,28,62,126,254,508,254,126,62,28,0]}
     ];
-
-    y = 0;
-    pinkcubes.forEach((v)=>{
-        y++;
-        for (var x=0;x<8;x++){
-            if (!!(v & (1<<x))) {
-                var pixel = new THREE.Mesh( cube, pink );
-                pixel.position.set(d4-(y*d),d4-(x*d),0);    
-                pixelheart.add(pixel);
+    c.forEach((cube)=>{
+        y = 0;
+        let color = new THREE.MeshPhysicalMaterial({ color: cube.color });
+        cube.pos.forEach((v)=>{
+            y++;
+            for (var x=0;x<10;x++){
+                if (!!(v & (1<<x))) {
+                    var pixel = new THREE.Mesh( cubeGeo, color );
+                    pixel.position.set(d5-(y*d),d5-(x*d),d5-(cube.layer*d));
+                    pixelheart.add(pixel);
+                }
             }
-        }
+        });
     });
 
     // create the camera
@@ -112,7 +78,8 @@ function init() {
     document.body.appendChild( container );
 
     // init the WebGL renderer and append it to the Dom
-    renderer = new THREE.WebGLRenderer();
+    renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setClearColor( 0xffffff, 0);
     renderer.setSize(800,600 );
     container.appendChild( renderer.domElement );
 
@@ -122,9 +89,9 @@ function init() {
 */
 function render() {
     // animate the cube
-    pixelheart.rotation.x += 0.02;
-    pixelheart.rotation.y += 0.0225;
-    pixelheart.rotation.z += 0.0175;
+    pixelheart.rotation.x += 0.02*speed;
+    pixelheart.rotation.y += 0.0225*speed;
+    pixelheart.rotation.z += 0.0175*speed;
     // actually display the scene in the Dom element
     renderer.render( scene, camera );
 }
