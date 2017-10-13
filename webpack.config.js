@@ -11,7 +11,8 @@ module.exports = {
         filename: "pixelheart.js"
     },
     devServer: {
-        contentBase: path.join(__dirname, "assets")
+        contentBase: path.join(__dirname, "assets"),
+        port: 3000
     },
     module: {
         loaders: [
