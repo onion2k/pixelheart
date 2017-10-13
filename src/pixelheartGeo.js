@@ -1,4 +1,7 @@
-import {Mesh, BoxBufferGeometry, MeshPhysicalMaterial, Object3D} from 'three';
+import { Mesh } from '../node_modules/three/src/objects/Mesh';
+import { BoxBufferGeometry } from '../node_modules/three/src/geometries/BoxGeometry';
+import { MeshPhysicalMaterial } from '../node_modules/three/src/materials/MeshPhysicalMaterial';
+import { Object3D } from '../node_modules/three/src/core/Object3D';
 
 function createPixelheart(){
 
@@ -8,6 +11,7 @@ function createPixelheart(){
     let x;
     let s = 12;
     let g = 0;
+    let sh = s/2;
     let d = s+g;
     let d5 = d*5;
 
@@ -27,7 +31,7 @@ function createPixelheart(){
             for (var y=0;y<10;y++){
                 if (!!(v & (1<<y))) {
                     var pixel = new Mesh( cubeGeo, color );
-                    pixel.position.set(d5-(x*d),d5-(y*d),d5-(cube.layer*d));
+                    pixel.position.set(sh+(d5-(x*d)),d5-(y*d),d5-(cube.layer*d));
                     pixelheart.add(pixel);
                 }
             }

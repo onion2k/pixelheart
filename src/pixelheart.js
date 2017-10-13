@@ -1,5 +1,11 @@
 
-import {OrthographicCamera, Scene, Mesh, BoxBufferGeometry, MeshStandardMaterial, MeshPhysicalMaterial, WebGLRenderer, Vector3, AmbientLight, PointLight, Object3D} from 'three';
+import { OrthographicCamera } from '../node_modules/three/src/cameras/OrthographicCamera';
+import { Scene } from '../node_modules/three/src/scenes/Scene';
+import { Mesh } from '../node_modules/three/src/objects/Mesh';
+import { WebGLRenderer } from '../node_modules/three/src/renderers/WebGLRenderer';
+import { Vector3 } from '../node_modules/three/src/math/Vector3';
+import { AmbientLight } from '../node_modules/three/src/lights/AmbientLight';
+import { PointLight } from '../node_modules/three/src/lights/PointLight';
 
 import pixelheart from './pixelheartGeo.js';
 
