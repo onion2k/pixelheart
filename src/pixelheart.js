@@ -1,4 +1,3 @@
-
 import { OrthographicCamera } from '../node_modules/three/src/cameras/OrthographicCamera';
 import { Scene } from '../node_modules/three/src/scenes/Scene';
 import { Mesh } from '../node_modules/three/src/objects/Mesh';
@@ -8,6 +7,7 @@ import { AmbientLight } from '../node_modules/three/src/lights/AmbientLight';
 import { PointLight } from '../node_modules/three/src/lights/PointLight';
 
 import pixelheart from './pixelheartGeo.js';
+import pixelheartCss from './pixelheart.css';
 
 var THREE = {
     OrthographicCamera: OrthographicCamera,
@@ -19,16 +19,7 @@ var THREE = {
 }
 
 var container;
-var camera, light, scene, renderer;
-var startTime = Date.now();
-var speed = 1.0;
-
-var targetRotation = 0;
-var targetRotationOnMouseDown = 0;
-
-var windowHalfX = window.innerWidth / 2;
-var windowHalfY = window.innerHeight / 2;
-
+var camera, scene, renderer;
 var hearts = [];
 var totalHearts = 24;
 var dist = 160;
@@ -47,7 +38,6 @@ function init() {
     }
     
     // create the camera
-    //camera = new THREE.PerspectiveCamera( 70, 800/600, 1, 1000 );
     camera = new THREE.OrthographicCamera( -480, 480, 320, -320, -400, 400 );
     camera.position.x = 0;
     camera.position.y = 0;
