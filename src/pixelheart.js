@@ -31,6 +31,7 @@ var windowHalfY = window.innerHeight / 2;
 
 var hearts = [];
 var totalHearts = 24;
+var dist = 160;
 
 function init() {
 
@@ -39,15 +40,15 @@ function init() {
 
     for (var h=0;h<totalHearts;h++){
         var p = pixelheart.clone();
-        p.position.x = 375 - (Math.floor(h%6) * 150);
-        p.position.y = 225 - (Math.floor(h/6) * 150);
+        p.position.x = (dist*2.5) - (Math.floor(h%6) * dist);
+        p.position.y = (dist*1.5) - (Math.floor(h/6) * dist);
         hearts.push(p);
         scene.add( p );
     }
     
     // create the camera
     //camera = new THREE.PerspectiveCamera( 70, 800/600, 1, 1000 );
-    camera = new THREE.OrthographicCamera( -400, 400, 300, -300, -300, 300 );
+    camera = new THREE.OrthographicCamera( -480, 480, 320, -320, -400, 400 );
     camera.position.x = 0;
     camera.position.y = 0;
     camera.position.z = 50;
@@ -73,12 +74,15 @@ function init() {
 /**
  * Render the 3D scene
 */
+
 function render() {
 
     for (var h=0;h<totalHearts;h++){
-        if ((Math.floor(h/6)+h)%2==0) {
+        
+        var p = (Math.floor(h/6)+h)%2;
+        if (p===0) {
             hearts[h].rotation.y+=0.025;
-        } else {
+        } else if (p===1) {
             hearts[h].rotation.x-=0.025;
         }
     }
